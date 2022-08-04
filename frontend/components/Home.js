@@ -27,7 +27,7 @@ const Home = ({data}) => {
                 <Link href="/search">Go to Search</Link>
               </div>
             </div>
-            {jobs && jobs.map((job) => <JobItem key={job.id} />)}
+            {jobs && jobs.map((job) => <JobItem key={job.id} job={job}/>)}
           </div>
         </div>
       </div>
