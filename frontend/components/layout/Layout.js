@@ -24,4 +24,4 @@ const Layout = ({children, title = 'Jobbee - Find Your Job Now'}) => {
   )
 }
 
-export default Layout
+export default Layout;

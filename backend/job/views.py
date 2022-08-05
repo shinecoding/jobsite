@@ -28,7 +28,7 @@ def getAllJobs(request):
 
     queryset = paginator.paginate_queryset(filterset.qs, request)
 
-    serializer = JobSerializer(filterset.qs, many=True)
+    serializer = JobSerializer(queryset, many=True)
     return Response({
         "count": count,
         'resPerPage': resPerPage,

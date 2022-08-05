@@ -5,28 +5,34 @@ import Link from 'next/link';
 import {useRouter} from "next/router";
 import Pagination from 'react-js-pagination';
 
-const Home = ({data}) => {
 
-  const {jobs, count, resPerPage} = data
-  const router = useRouter();
-  let {page = 1, keyword} = router.query;
-
-    let queryParams;
-    if(typeof window !=='undefined') {
-      queryParams = new URLSearchParams(window.location.search);
-    }
+const Home = ({ data }) => {
+  const { jobs, count, resPerPage } = data;
   
+  const router = useRouter();
+
+  let { page = 1, keyword } = router.query;
+  page = Number(page);
+
+
+  let queryParams;
+  if (typeof window !== "undefined") {
+    queryParams = new URLSearchParams(window.location.search);
+  }
+
   const handlePageClick = (currentPage) => {
-    if(queryParams.has('page')) {
-        queryParams.set('page', currentPage);
+    if (queryParams.has("page")) {
+      queryParams.set("page", currentPage);
     } else {
-      queryParams.append('page', currentPage)
+
+      queryParams.append("page", currentPage);
     }
 
     router.push({
       search: queryParams.toString(),
     });
   };
+
 
   return (
     <>
@@ -74,4 +80,6 @@ const Home = ({data}) => {
   )
 }
 
-export default Home
+export default Home;
+
+
