@@ -1,6 +1,5 @@
 import re
 from django.shortcuts import render
-from itsdangerous import Serializer
 from rest_framework.decorators import api_view
 
 from .serializers import JobSerializer
