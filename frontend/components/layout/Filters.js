@@ -45,11 +45,12 @@ const Filters = () => {
   }
 
   function checkHandler(checkBoxType, checkBoxValue) {
-    const value = queryParams.get(checkBoxType);
-    if(checkBoxValue === value) return true;
-    return false;
-  } 
-
+    if (typeof window!== "undefined"){
+      const value = queryParams.get(checkBoxType);
+      if(checkBoxValue === value) return true;
+      return false;
+    } 
+  }
 
   return (
     <div className="sidebar mt-5">

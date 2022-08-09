@@ -39,3 +39,38 @@ export async function getServerSideProps({ query }) {
     },
   };
 }
+
+
+export async function getServerSideProps({ params }) {
+
+    try {
+        console.log("각자", params)
+        console.log(`${process.env.API_URL}/api/job/${params.id}/`)
+        const res = await axios.get(`${process.env.API_URL}/api/job/${params.id}/`)
+        // console.log("페이지아이디" , res.data)
+        const data = res.data
+        // const job = res.data.job;
+        // const candidates = res.data.candidates;
+        // return {
+        //     props: {
+        //         job,
+        //         candidates
+        //     }
+        // }
+        return {
+            props: {
+                data
+            }
+        }
+    } catch (error) {
+        console.log(error.response.data);
+        return {
+            props: {
+                error: error.response.data.detail
+            }
+        }
+    }
+
+
+    
+}

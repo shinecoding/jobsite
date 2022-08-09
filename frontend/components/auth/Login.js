@@ -1,8 +1,11 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {useRouter} from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import AuthContext from '../../context/AuthContext'
+import {toast} from "react-toastify";
+
 
 const Login = () => {
 
@@ -10,11 +13,12 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     const router = useRouter()
-    const { loading, error, isAuthenticated, login } = useContext(AuthContext);
+    const { loading, error, isAuthenticated, login, clearError } = useContext(AuthContext);
 
     useEffect(() => {
         if(error) {
-            console.log(error)
+            toast.error(error);
+            clearError();
         }
         if(isAuthenticated && !loading){
             router.push('/')
@@ -32,7 +36,7 @@ const Login = () => {
           <div className="modalWrapper">
             <div className="left">
               <div style={{ width: "100%", height: "100%", position: "relative" }}>
-                <Image src="/images/login.svg" alt="login" layout='fill'/>
+                <Image src="/images/login.svg" alt="login" layout='fill' priority/>
               </div>
             </div>
             <div className="right">
@@ -70,7 +74,7 @@ const Login = () => {
                     </button>
                   </div>
                   <p style={{ textDecoration: "none" }} className="signup">
-                    New to Jobbee? <a href="/register">Create an account</a>
+                    New to Jobbee? <Link href="/register">Create an account</Link>
                   </p>
                 </form>
               </div>
